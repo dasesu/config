@@ -1,0 +1,141 @@
+window:
+  # Number of lines/columns (not pixels) in the terminal.
+  dimensions:
+    columns: 130
+    lines: 33
+
+
+  # Window position (changes require restart)
+  position:
+    x: 78
+    y: 50
+
+
+  # Window padding (changes require restart)
+  padding:
+    x: 5
+    y: 5
+
+
+  # Window decorations
+  #decorations:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  decorations: none
+
+
+  # Background opacity
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  opacity: 0.80
+
+
+  # Startup Mode (changes require restart)
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  startup_mode: Windowed
+
+  
+  scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  history: 10000
+
+  # Scrolling distance multiplier.
+  multiplier: 3
+
+
+# Font configuration
+font:
+  normal:
+    family: Hack Nerd Font
+    style: Regular
+
+  bold:
+    family: Hack Nerd Font
+    style: Bold
+
+  italic:
+    family: Hack Nerd Font
+    style: Italic
+
+  bold_italic:
+    family: Hack Nerd Font
+    style: Bold Italic
+  # Point size
+ 
+  size: 14
+
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+  draw_bold_text_with_bright_colors: true
+
+# Colors (Tomorrow Night)
+colors:
+  #Default colors
+  primary:
+    background: '#1d1f21'
+    foreground: '#D0CFCC'
+
+  #Normal colors
+  normal:
+    black:   '#171421'
+    red:     '#C01C28'
+    green:   '#26A269'
+    yellow:  '#A2734C'
+    blue:    '#12488B'
+    magenta: '#A347BA'
+    cyan:    '#2AA1B3'
+    Lwhite:   '#D0CFCC'
+
+  # Bright colors
+  bright:
+    black:   '#5E5C64'
+    red:     '#F66151'
+    green:   '#33D17A'
+    yellow:  '#E9AD0C'
+    blue:    '#2A7BDE'
+    magenta: '#C061CB'
+    cyan:    '#33C7DE'
+    white:   '#FFFFFF'
+
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
+live_config_reload: true
+
+cursor:
+  # Cursor style
+  style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Block
+
+    # Cursor blinking state
+    # Values for `blinking`:
+    #   - Never: Prevent the cursor from ever blinking
+    #   - Off: Disable blinking by default
+    #   - On: Enable blinking by default
+    #   - Always: Force the cursor to always blink
+    blinking: Always
+
+# Shell
+# Default:
+#   - (Linux/BSD) user login shell
+#   - (Windows) powershell
+shell:
+  program: /bin/bash

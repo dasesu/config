@@ -1,0 +1,96 @@
+live_config_reload = true
+
+[colors.bright]
+black = "#5E5C64"
+blue = "#2A7BDE"
+cyan = "#33C7DE"
+green = "#33D17A"
+magenta = "#C061CB"
+red = "#F66151"
+white = "#FFFFFF"
+yellow = "#E9AD0C"
+
+[colors.normal]
+white = "#D0CFCC"
+black = "#171421"
+blue = "#12488B"
+cyan = "#2AA1B3"
+green = "#26A269"
+magenta = "#A347BA"
+red = "#C01C28"
+yellow = "#A2734C"
+
+[colors.primary]
+background = "#1d1f21"
+foreground = "#D0CFCC"
+
+[cursor.style]
+blinking = "Always"
+shape = "Block"
+
+[font]
+#draw_bold_text_with_bright_colors = true
+# for 1440x810 (16:9)
+#size = 13
+
+# for 1690x960 (16:9)
+#size = 14
+size = 16
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[shell]
+program = "/bin/bash"
+
+[window]
+decorations = "none"
+#history = 10000
+#multiplier = 3
+opacity = 0.80
+startup_mode = "Windowed"
+
+[window.dimensions]
+# for 1440x810 (16:9)
+# columns = 116
+# lines = 30
+
+# for 1690x960 (16:9)
+columns = 114
+lines = 28
+
+[window.padding]
+x = 5
+y = 5
+
+[window.position]
+#x = 78
+#y = 50
+
+ x = 50
+ y = 50
