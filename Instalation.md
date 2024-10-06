@@ -70,6 +70,19 @@ I define my favorites shortscuts manually, for example:
 ```
 sudo apt install tree
 ```
+### install fzf
+```
+sudo apt install fzf
+```
+
+and add the next command to `~/.bashrc`
+```
+# for go to a directory
+alias asd='cd "$( find . -type d | fzf --height=60% --layout=reverse  --border --margin=1 --padding=1 )"'
+# for open the file with nvim
+alias dsa='nvim "$( find . -type f | fzf --height=60% --layout=reverse  --border --margin=1 --padding=1 )"'
+```
+
 
 ### Files permissions
 Copy personal files, and give to them the right permissions for directories in
