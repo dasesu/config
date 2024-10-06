@@ -1,10 +1,11 @@
-# My nvim installation and configuration
+# My nvim installation, configuration and some comments
 
-This is basically a copy of one of the Christian Chiarulli (Chris@machine)
-configuration with a few variations.
+This is basically a copy of one of the Christian Chiarulli's (Chris@machine)
+configuration with a few variations. The idea is keep it simple, use the
+christian's structure with which i feel ocnfortable and adapt it for my use.
 
 ### Download and install nvim
-Downloading the lastes neovim release (neovim 0.10 at the current date 26/09/24)  
+Download the lastes neovim release (neovim 0.10 at the current date 26/09/24)
 ```
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
@@ -48,11 +49,7 @@ touch ~/.config/nvim/init.lua
 ```
 
 ### Launche file
-```
-touch ~/.config/nvim/lua/user/launch.lua 
-```
-
-Add this:
+Add the next content to `~/.config/nvim/lua/user/launch.lua`:
 ```
 LAZY_PLUGIN_SPEC = {}
 
@@ -61,13 +58,13 @@ function spec(item)
 end
 ```
 
-Edit the nvim/init.lua file to require the launch file
+Edit the `~/.config/nvim/init.lua` file to require the launch file.
 ```
 require("user.launch")
 ```
 
 ### Options
-Add the options, in the file nvim/lua/user/options.lua
+Edit the file `~/.config/nvim/lua/user/options.lua, with the next app options
 ```
 local options = {
   --vim.opt.syntax = "enable"
@@ -141,14 +138,15 @@ vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
 ```
 
-add the respective call to the init.lua file
+And also include a call to the options file from init.lua.
 ```
 require("user.launch")
 require("user.options")
 ```
 
 ### Keymaps
-Same procedure with the nvim/lua/user/keymaps.lua for defien our keymaps.
+Same procedure with the `~/.config/nvim/lua/user/keymaps.lua`.
+Create the file keymaps.lua with the definition of our keymaps, and load it from init.lua.
 ```
 -- Modes
 --   normal_mode = "n",
@@ -253,7 +251,7 @@ keymap('n', '<Leader>c', ':ColorizerToggle<CR>', opts)
 --vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
 ```
 
-And call these keymaps from the init.lua
+And the respective call from the init.lua
 ```
 require("user.launch")
 require("user.options")
@@ -297,7 +295,14 @@ require("user.lazy")
 ```
 
 ### Now we can add some plugins
-For example, the colorscheme, add the colorscheme.lua in lua/user
+There is no a specific order to call the plugins, but in some cases the plugins
+could depend from another plugin, in that case the order will be important.
+Also keep in mind that to call a plugin we're going to use spec instead of
+require  which is the array used for load plugins defined before.  
+ 
+
+#### colorscheme 
+Add the colorscheme plugin by creating the `~/.config/nvim/lua/user/colorscheme.lua` file.
 ```
 local M = {
   "EdenEast/nightfox.nvim",
@@ -323,8 +328,9 @@ end
 return M
 ```
 
-And now we call it but using specs, which is the array used for load plugins
+And load the file using spec
 ```
+
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -334,10 +340,8 @@ spec("user.colorscheme")
 require("user.lazy")
 ```
 
-# Devicons
-Following the used order, the next to setup is the devicons plugin
-
-Create the file devicons.lua in `~/.config/nvim/lua/user/`  folder
+#### Devicons
+Create the file `~/.config/nvim/lua/user/devicons.lua` with the following content
 ```
 local M = {
   "nvim-tree/nvim-web-devicons",
@@ -351,7 +355,7 @@ end
 return M
 ```
 
-and the call
+The init.lua file:
 ```
 require("user.launch")
 require("user.options")
@@ -363,12 +367,12 @@ spec("user.devicons")
 require("user.lazy")
 ```
 
-# Transparency
+#### Transparency
+Create the `~/.config/nvim/lua/user/transparent.lua`
 ```
 local M = {
   "xiyaowong/nvim-transparent",
-  lazy = false, -- make sure we load this during startup if it is your main colorscheme
-  priority = 1000, -- make sure to load this before all the other start plugins
+  lazy = false, -- make sure we load this during startup
 }
 
 function M.config()
@@ -381,7 +385,7 @@ end
 return M
 ```
 
-The init.lua file change to
+The init.lua file:
 ```
 require("user.launch")
 require("user.options")
@@ -394,7 +398,8 @@ spec("user.transparent")
 require("user.lazy")
 ```
 
-# Tree-Sitter
+#### Tree-Sitter
+
 ```
 local M = {
   "nvim-treesitter/nvim-treesitter",
@@ -413,7 +418,7 @@ end
 return M
 ```
 
-and the call
+The init.lua:
 ```
 require("user.launch")
 require("user.options")
@@ -426,5 +431,131 @@ spec("user.treesitter")
 
 require("user.lazy")
 ```
+
+Some interesting commands:
+:InspectTree -- show the parses tree 
+
+
+### LSP
+There are several ways to implement LSP in neovim, the first one mentioned here
+is just informative, the second is using lsp-config, and the third way is using
+mason
+
+#### Native vim way (without plugin)
+Vim already has a lsp server, this can be verified with the command `:lua
+vim.print(vim.lsp)` for know more about how it can be use it you show the help
+info with the command `:h vim.lsp.start`, this show somthing linke this: 
+```
+Example:
+vim.lsp.start({
+   name = 'my-server-name',
+   cmd = {'name-of-language-server-executable'},
+   root_dir = vim.fs.root(0, {'pyproject.toml', 'setup.py'}),
+})
+```
+
+We are going to need a language server installed, like for example `clangd`,
+This can be installed in linux with `sudo apt install clangd` or you can also
+download binaries directly (https://clangd.llvm.org/installation). Now that you
+have the installed clangd with the path of installation you can fill in the
+fields name, cmd and root_dir.
+
+```
+-- This is a test, the important part is the next, but additional configuration
+-- is needed for make it works the name field define the name asigned to out
+-- language, it could be any name. the cmd contains the path to the lsp language
+-- root_dir define the method used to figure out what is the project root
+-- directory. generally it would be the pwd or vim.fn.getcwd()
+
+--  vim.lsp.start({
+--    name = "clangd", 
+--    cmd = {"/home/dasesu/clangd/bin/clangd"},
+--    root_dir = vim.fn.getcwd(),
+--    
+--  })
+```
+
+We need to specify what buffer to use, and when.
+```
+-- This is a very manually  configuration for clangd, works well but can be sturdy
+-- to mantain, and has some inconvenients, for example you the languages defined
+-- are always loaded, this its ok if you only use just one language.
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   callback = function()
+--     vim.lsp.start({
+--       name = "clangd", 
+--       cmd = {"/home/dasesu/clangd/bin/clangd"},
+--       root_dir = vim.fn.getcwd(),
+--     })
+--   end,
+-- }) 
+```
+
+The both code above are demonstrative, but they works well enough for use
+functionalities like `:lua vim.lsp.buf.hover()`. However there are other
+options to configure LSP that can be easier
+
+#### lspconfig 
+
+
+#### Mason
+
+Mason is a LSP manager which simplifies the LSP usage, but it has some
+disadvantages, the most remarkable one is that mason create a particular
+environment for nvim and it can't be used by another programs, also that mason
+use some server names different than the used by LSP, this create
+inconsistencies and ergo failures. Due to this the plugin lsp-mason help to
+reduce the gap existent between this two tools.
+
+Next the mason installation and its settings. 
+
+First create the file `~/.config/nvim/lua/usr/mason.lua` and add the content:
+```
+local M = {
+  "williamboman/mason-lspconfig.nvim",
+  dependencies = {
+    "williamboman/mason.nvim",
+  },
+}
+
+function M.config()
+  local servers = {
+    "html",
+    "cssls",
+    "pyright",
+  }
+
+  require("mason").setup {
+    ui = {
+      border = "rounded",
+    },
+  }
+
+  require("mason-lspconfig").setup {
+    ensure_installed = servers,
+  }
+
+end
+
+return o
+```
+The init.lua
+```
+require("user.launch")
+require("user.options")
+require("user.keymaps")
+
+spec("user.colorscheme")
+spec("user.devicons")
+spec("user.transparent")
+spec("user.treesitter")
+spec("user.mason") -- 
+
+require("user.lazy")
+```
+
+**Usefull stuffs:**  
+Running `:lua =vim.lsp.get_active_clients()` will give you a lua table.
 
 
