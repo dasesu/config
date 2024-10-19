@@ -16,7 +16,7 @@ local M = {
 
 function M.config()
   -- vim.cmd.colorscheme("monokai-pro-default")
-  vim.cmd.colorscheme("nordfox")
+  vim.cmd.colorscheme("nightfox")
 end
 
 return M

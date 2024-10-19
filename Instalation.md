@@ -207,3 +207,4 @@ Install of virtualbox
 sudo gdebi virtualbox-7.0_7.0.20-163906~Ubuntu~noble_amd64.deb
 # install virtualbox and the extension pack
 ```
+

@@ -14,7 +14,7 @@ vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
 -- set spell check for spanish
-keymap("n", "<leader>s", ":setlocal spell spelllang=es<CR>", opts)
+keymap("n", "<leader>s", ":setlocal spell spelllang=es<CR>", opts )
 keymap("n", "<leader>so", ":set nospell<CR>", opts)
 
 -- word suggets with telescope
@@ -30,8 +30,8 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<Space>", "<Nop>", opts)
 
 -- hex mode and back
-keymap("n", "<Leader>x", ":%!xxd<CR>", opts)
-keymap("n", "<Leader>z", ":%!xxd -r<CR>", opts)
+-- keymap("n", "<Leader>x", ":%!xxd<CR>", opts)
+-- keymap("n", "<Leader>z", ":%!xxd -r<CR>", opts)
 
 -- better paste ( remember original copied word )
 keymap("x", "p", [["_dP]])
@@ -70,8 +70,8 @@ keymap("n", "sw", ":set ts=2<CR>:set sw=2<CR>", opts)
 -- no hilight search
 keymap("n", "<esc><esc>", "<cmd>nohlsearch<cr>", opts)
 
-keymap('n', '<Leader>nr', ':set rnu<CR>', opts)
-keymap('n', '<Leader>nn', ':set nornu<CR>', opts)
+-- keymap('n', '<Leader>nr', ':set rnu<CR>', opts)
+-- keymap('n', '<Leader>nn', ':set nornu<CR>', opts)
 
 -- Edit Snippets
 keymap("n", "-", ":lua require('luasnip.loaders').edit_snippet_files()<cr>", opts)
@@ -79,25 +79,12 @@ keymap("n", "-", ":lua require('luasnip.loaders').edit_snippet_files()<cr>", opt
 -- Colorizer
 keymap('n', '<Leader>c', ':ColorizerToggle<CR>', opts)
 
--- NvimTree
--- keymap("n", "<Leader>e", ":NvimTreeToggle<cr>", opts)
-
 -- Markdown
--- keymap('n', '<Leader>m', ':MarkdownPreviewToggle<CR>', opts)
+-- keymap('n', '<Leader>m', ':ggle<CR>', opts)
 
-
--- my functions
--- keymap("n", "<Leader>cxz", ":lua clearregister()<cr>", opts)
-
--- The minimap
--- keymap('n', '<Leader>mm', ':MinimapToggle<CR>', opts)
--- keymap('n', '<Leader>m', ':MinimapToggle<CR>', opts)
 
 -- sessions
 -- map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 -- keymap('n', '<F2>', ':mksession! ~/vim_session/vim_session  <cr>', opts)
 -- keymap('n', '<F3>', ':source ~/vim_session/vim_session  <cr>', opts)
-
---vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
---vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
 
