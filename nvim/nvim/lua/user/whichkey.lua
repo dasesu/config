@@ -156,6 +156,14 @@ function M.config()
       },
     },
     {
+      "<leader>m",
+      group = " Markdown",
+      icon = {
+        icon = " ",
+        color = "blue",
+      },
+    },
+    {
       "<leader>w",
       "<cmd>lua vim.wo.wrap = not vim.wo.wrap<CR>",
       desc = "Wrap",

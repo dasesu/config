@@ -98,6 +98,9 @@ spec("user.extras.markdown")
 -- live-server for html folders
 spec("user.extras.liveserver")
 
+-- Improve viewing Markdown files in Neovim
+spec("user.extras.render-markdown")
+
 -- Distraction-free coding for Neovim
 -- spec("user.extras.zen")
 

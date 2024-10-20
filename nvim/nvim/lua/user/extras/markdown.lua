@@ -7,9 +7,9 @@ local M = {
 function M.config()
 
   local keymap = vim.keymap.set
-  local opts = { noremap = true, silent = true }
+  local opts = { noremap = true, silent = true, desc = " MarkdownToggle" }
   -- MarkdownToggle
-  keymap("n", "<Leader>m", ":MarkdownPreviewToggle<CR>", opts)
+  keymap("n", "<Leader>m", ":MarkdownPreviewToggle<CR>", opts )
   local ft = { "markdown" }
   vim.cmd("let g:mkdp_theme = 'dark'")
 end
