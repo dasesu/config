@@ -11,6 +11,13 @@ local M = {
 }
 
 function M.config()
+  local keymap = vim.keymap.set
+  local opts = { noremap = true, silent = true, desc = " RenderMarkdownToggle" }
+  -- MarkdownToggle
+  keymap("n", "<Leader>mr", ":RenderMarkdown toggle<CR>", opts)
+
+
+
   require('render-markdown').setup {
     -- Whether Markdown should be rendered by default or not
     enabled = true,

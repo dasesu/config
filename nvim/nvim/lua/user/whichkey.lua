@@ -3,7 +3,6 @@ local M = {
   event = "VeryLazy",
 }
 
-
 function M.config()
   local which_key = require("which-key")
 
@@ -12,7 +11,7 @@ function M.config()
     preset = "modern",
     -- Delay before showing the popup. Can be a number or a function that returns a number.
     ---@type number | fun(ctx: { keys: string, mode: string, plugin?: string }):number
-    delay = 450,
+    delay = 550,
     ---@param mapping wk.Mapping
     filter = function(mapping)
       -- example to exclude mappings without a description
@@ -73,7 +72,7 @@ function M.config()
     --- * mod: special modifier keys last
     --- * manual: the order the mappings were added
     --- * case: lower-case first
-    sort = { "local", "order", "group", "alphanum", "mod", "manual" },
+    sort = { "manual", "order", "group", "alphanum", "mod", "local" },
 
     icons = {
       rules = {
@@ -94,7 +93,7 @@ function M.config()
         { plugin = "lazy.nvim", cat = "filetype", name = "lazy" },
         { plugin = "CopilotChat.nvim", icon = " ", color = "orange" },
         { pattern = "%f[%a]git", cat = "filetype", name = "git" },
-        { pattern = "terminal", icon = " ", color = "blue" },
+        { pattern = "terminal", icon = " ", color = "blue" },
         { pattern = "find", icon = " ", color = "green" },
         { pattern = "search", icon = " ", color = "blue" },
         { pattern = "test", cat = "filetype", name = "neotest-summary" },
@@ -129,14 +128,20 @@ function M.config()
 
 
   -- icon colors
-  -- azure, blue, cyan, green, grey, orange, purple, red, yellow
+  -- azure, grey, cyan, green, grey, orange, purple, red, yellow
   wk.add {
     {
       "<leader>f",
       group = " Telescope",
       icon = {
         icon = "",
-        color = "blue",
+        color = "grey",
+      },
+    },
+    { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = " NvimTree",
+      icon = {
+        icon = "",
+        color = "grey",
       },
     },
     {
@@ -144,7 +149,7 @@ function M.config()
       group = " LSP",
       icon = {
         icon = " ",
-        color = "blue",
+        color = "grey",
       },
     },
     {
@@ -152,7 +157,7 @@ function M.config()
       group = " Git",
       icon = {
         icon = " ",
-        color = "blue",
+        color = "grey",
       },
     },
     {
@@ -160,7 +165,16 @@ function M.config()
       group = " Markdown",
       icon = {
         icon = " ",
-        color = "blue",
+        color = "grey",
+      },
+    },
+    {
+      "<leader>c",
+      "<cmd>ColorizerToggle<CR>",
+      desc = " ColorizerToggle",
+      icon = {
+        icon = " ",
+        color = "grey",
       },
     },
     {

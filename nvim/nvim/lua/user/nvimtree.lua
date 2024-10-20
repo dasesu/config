@@ -3,15 +3,15 @@ local M = {
 }
 
 function M.config()
-  local wk = require("which-key")
-  wk.add {
-    { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = " NvimTree",
-      icon = {
-        icon = "",
-        color = "blue",
-      },
-    },
-  }
+  -- local wk = require("which-key")
+  -- wk.add {
+  --   { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = " NvimTree",
+  --     icon = {
+  --       icon = "",
+  --       color = "blue",
+  --     },
+  --   },
+  -- }
 
   local icons = require("user.icons")
 
