@@ -213,3 +213,14 @@ sudo gdebi virtualbox-7.0_7.0.20-163906~Ubuntu~noble_amd64.deb
 ```
 sudo snap install glow
 ```
+
+### 
+
+```bash
+sudo apt install pkg-config \
+libglib2.0-dev \
+liblua5.4-dev \
+libwnck-3-dev \
+libgtk-4-dev
+```
+

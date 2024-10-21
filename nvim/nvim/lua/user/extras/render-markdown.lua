@@ -272,7 +272,7 @@ function M.config()
         scope_highlight = nil,
       },
       -- Define custom checkbox states, more involved as they are not part of the markdown grammar
-      -- As a result this requires neovim >= 0.10.0 since it relies on 'inline' extmarks
+        -- As a result this requires neovim >= 0.10.0 since it relies on 'inline' extmarks
       -- Can specify as many additional states as you like following the 'todo' pattern below
       --   The key in this case 'todo' is for healthcheck and to allow users to change its values
       --   'raw':             Matched against the raw text of a 'shortcut_link'
@@ -280,7 +280,15 @@ function M.config()
       --   'highlight':       Highlight for the 'rendered' icon
       --   'scope_highlight': Highlight for item associated with custom checkbox
       custom = {
-        todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo', scope_highlight = nil },
+        -- my custom symbols for the Ryder Caroll’s Bullet Journal method.
+        task = { raw = '[.]', rendered = '•', highlight = 'RenderMarkdownQuote',  scope_highlight = nil },
+        done = { raw = '[v]', rendered = '', highlight = 'RenderMarkdownSuccess', scope_highlight = nil },
+        canceled = { raw = '[c]', rendered = '', highlight = 'RenderMarkdownError', scope_highlight = nil },
+        todo = { raw = '[-]', rendered = '─', highlight = 'RenderMarkdownInfo', scope_highlight = nil },
+        event = { raw = '[o]', rendered = '', highlight = 'RenderMarkdownWarn', scope_highlight = nil },
+        migrated = { raw = '[>]', rendered = '', highlight = 'RenderMarkdownInfo', scope_highlight = nil },
+        scheduled = { raw = '[<]', rendered = '', highlight = 'RenderMarkdownInfo', scope_highlight = nil },
+        important = { raw = '[!]', rendered = '', highlight = 'RenderMarkdownError', scope_highlight = nil },
       },
     },
     quote = {
