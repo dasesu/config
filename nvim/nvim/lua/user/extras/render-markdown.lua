@@ -227,7 +227,7 @@ function M.config()
       -- Width of the generated line:
       --  <integer>: a hard coded width value
       --  full:      full width of the window
-      width = 'full',
+      width = 80,
       -- Highlight for the whole line generated from the icon
       highlight = 'RenderMarkdownDash',
     },
