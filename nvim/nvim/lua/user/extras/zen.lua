@@ -52,4 +52,27 @@ local M = {
   }
 }
 
+function M.config()
+
+  local keymap = vim.keymap.set
+  local opts = { noremap = true, silent = true, desc = " ZenMode" }
+  -- MarkdownToggle
+  -- keymap("n", "<Leader>pz", ":ZenMode<CR>", opts )
+  local wk = require("which-key")
+  wk.add {
+    {
+      "<leader>pz",
+      "<cmd>ZenMode<CR>",
+      desc = " ZenToggle",
+      icon = {
+        icon = " ",
+        color = "azure",
+      },
+    },
+  }
+
+
+end
+
+
 return M

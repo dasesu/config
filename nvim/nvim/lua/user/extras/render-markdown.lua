@@ -202,7 +202,7 @@ function M.config()
       -- If a floating point value < 1 is provided it is treated as a percentage of the available window space
       right_pad = 0,
       -- Minimum width to use for code blocks when width is 'block'
-      min_width = 80,
+      min_width = 79,
       -- Determins how the top / bottom of code block are rendered:
       --  thick: use the same highlight as the code body
       --  thin:  when lines are empty overlay the above & below icons
@@ -227,7 +227,7 @@ function M.config()
       -- Width of the generated line:
       --  <integer>: a hard coded width value
       --  full:      full width of the window
-      width = 80,
+      width = 79,
       -- Highlight for the whole line generated from the icon
       highlight = 'RenderMarkdownDash',
     },
@@ -280,7 +280,7 @@ function M.config()
       --   'highlight':       Highlight for the 'rendered' icon
       --   'scope_highlight': Highlight for item associated with custom checkbox
       custom = {
-        -- my custom symbols for the Ryder Caroll’s Bullet Journal method.
+        -- mmy custom  
         task = { raw = '[.]', rendered = '•', highlight = 'RenderMarkdownQuote',  scope_highlight = nil },
         done = { raw = '[v]', rendered = '', highlight = 'RenderMarkdownSuccess', scope_highlight = nil },
         canceled = { raw = '[c]', rendered = '', highlight = 'RenderMarkdownError', scope_highlight = nil },

@@ -102,12 +102,14 @@ spec("user.extras.liveserver")
 spec("user.extras.render-markdown")
 
 -- Distraction-free coding for Neovim
--- spec("user.extras.zen")
+spec("user.extras.zen")
 
 -- A Neovim note taking plugin for daily
 -- notes, task tracking and easy deep
 -- linking across files or git commits.
 -- spec("user.extras.note")
 
+-- A simple, easy-to-use Vim alignment plugin.
+-- spec("user.extras.easy-align")
 
 require("user.lazy")
