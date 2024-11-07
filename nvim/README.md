@@ -1,12 +1,12 @@
-# My nvim installation, configuration and some comments
+# My nvim installation, configuration and comments about it
 
 This is basically a copy of one of the Christian Chiarulli's (Chris@machine)
 configuration with a few variations. The idea is keep it simple, use the
-christian's structure with which i feel ocnfortable and adapt it for my use.
+christian's structure with which i feel comfortable and adapt it for my use.
 
 ### Download and install nvim
-Download the lastes neovim release (neovim 0.10 at the current date 26/09/24)
-```
+Download the last neovim release (neovim 0.10 at the current date 26/09/24)
+```sh
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
@@ -17,12 +17,12 @@ sudo ln -s /opt/nvim/AppRun /usr/bin/nvim
 ```
 
 Copy the nvim.desktop to /usr/share/applications and edit it  
-```
+```sh
 sudo cp nvim.desktop /usr/share/applications/
 ```
 
 Or just create the file and paste this into `/usr/share/applications/nvim.desktop`  
-```
+```sh
 [Desktop Entry]
 Name=Neovim
 GenericName=Text Editor
@@ -42,15 +42,15 @@ X-AppImage-Version=v0.10.1
 ### Configure the environment 
 
 Create the configuration folder, and the `init.lua` file
-```
+```sh
 mkdir ~/.config/nvim
 mkdir ~/.config/nvim/lua/user
 touch ~/.config/nvim/init.lua 
 ```
 
-### Launche file
+### The Launch file
 Add the next content to `~/.config/nvim/lua/user/launch.lua`:
-```
+```lua
 LAZY_PLUGIN_SPEC = {}
 
 function spec(item)
@@ -59,13 +59,13 @@ end
 ```
 
 Edit the `~/.config/nvim/init.lua` file to require the launch file.
-```
+```lua
 require("user.launch")
 ```
 
 ### Options
 Edit the file `~/.config/nvim/lua/user/options.lua, with the next app options
-```
+```lua
 local options = {
   --vim.opt.syntax = "enable"
   backup = false, -- creates a backup file
@@ -139,7 +139,7 @@ vim.g.netrw_mouse = 2
 ```
 
 And also include a call to the options file from init.lua.
-```
+```lua
 require("user.launch")
 require("user.options")
 ```
@@ -147,7 +147,7 @@ require("user.options")
 ### Keymaps
 Same procedure with the `~/.config/nvim/lua/user/keymaps.lua`.
 Create the file keymaps.lua with the definition of our keymaps, and load it from init.lua.
-```
+```lua
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -252,7 +252,7 @@ keymap('n', '<Leader>c', ':ColorizerToggle<CR>', opts)
 ```
 
 And the respective call from the init.lua
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -260,7 +260,7 @@ require("user.keymaps")
 
 ### The lazyvim package manager
 Create the file lazy in the user directory
-```
+```lua
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -287,7 +287,7 @@ require("lazy").setup {
 ```
 
 And again, call it. 
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -301,9 +301,9 @@ Also keep in mind that to call a plugin we're going to use spec instead of
 require  which is the array used for load plugins defined before.  
  
 
-#### colorscheme 
+### Colorscheme 
 Add the colorscheme plugin by creating the `~/.config/nvim/lua/user/colorscheme.lua` file.
-```
+```lua
 local M = {
   "EdenEast/nightfox.nvim",
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -329,8 +329,7 @@ return M
 ```
 
 And load the file using spec
-```
-
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -340,9 +339,9 @@ spec("user.colorscheme")
 require("user.lazy")
 ```
 
-#### Devicons
+### Devicons
 Create the file `~/.config/nvim/lua/user/devicons.lua` with the following content
-```
+```lua
 local M = {
   "nvim-tree/nvim-web-devicons",
   event = "VeryLazy",
@@ -356,7 +355,7 @@ return M
 ```
 
 The init.lua file:
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -367,9 +366,9 @@ spec("user.devicons")
 require("user.lazy")
 ```
 
-#### Transparency
-Create the `~/.config/nvim/lua/user/transparent.lua`
-```
+### Transparency
+Create the `~/.config/nvim/lua/user/transparent.lua` file  
+```lua
 local M = {
   "xiyaowong/nvim-transparent",
   lazy = false, -- make sure we load this during startup
@@ -386,7 +385,7 @@ return M
 ```
 
 The init.lua file:
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -398,8 +397,8 @@ spec("user.transparent")
 require("user.lazy")
 ```
 
-#### Tree-Sitter
-```
+### Tree-Sitter
+```lua
 local M = {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile" },
@@ -418,7 +417,7 @@ return M
 ```
 
 The init.lua:
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -440,12 +439,12 @@ require("user.lazy")
 There are several ways to implement LSP in neovim, the first one mentioned here
 is just informative 
 
-#### Native vim way (without plugin)
+### Native vim way (without plugin)
 Vim already has a lsp server, this can be verified with the command `:lua
 vim.print(vim.lsp)` for know more about how it can be use it you show the help
-info with the command `:h vim.lsp.start`, this show somthing linke this: 
-```
-Example:
+info with the command `:h vim.lsp.start`, this show something like this: 
+```lua
+-- Example:
 vim.lsp.start({
    name = 'my-server-name',
    cmd = {'name-of-language-server-executable'},
@@ -459,7 +458,7 @@ download binaries directly (https://clangd.llvm.org/installation). Now that you
 have the installed clangd with the path of installation you can fill in the
 fields name, cmd and root_dir.
 
-```
+```lua
 -- This is a test, the important part is the next, but additional configuration
 -- is needed for make it works the name field define the name asigned to out
 -- language, it could be any name. the cmd contains the path to the lsp language
@@ -475,7 +474,7 @@ fields name, cmd and root_dir.
 ```
 
 We need to specify what buffer to use, and when.
-```
+```lua
 -- This is a very manually  configuration for clangd, works well but can be sturdy
 -- to mantain, and has some inconvenients, for example you the languages defined
 -- are always loaded, this its ok if you only use just one language.
@@ -500,12 +499,11 @@ options to configure LSP that can be easier
 The file `~/.config/nvim/lua/user/whichkey.lua` contains the configuration of
 whichkey and some keymaps, this file is going to change meanwhile more plugins
 and files will be added. Reason why we came back to this file later.
-```
+```lua
 local M = {
   "folke/which-key.nvim",
   event = "VeryLazy",
 }
-
 
 function M.config()
   local which_key = require("which-key")
@@ -687,7 +685,7 @@ end
 return M
 ```
 
-#### Mason
+### Mason
 Mason is a LSP manager which simplifies the LSP usage, but it has some
 disadvantages, the most remarkable one is that mason create a particular
 environment for nvim and it can't be used by another programs, also that mason
@@ -697,10 +695,11 @@ reduce the gap existent between this two tools.
 
 Next the mason-lspconfig installation and its settings. You can see that
 mason-lspconfig depends of mason, the configurations will be in the
-mason-lspconfig.lua which include the installation of mason through the dependencies definition.
+mason-lspconfig.lua which include the installation of mason through the
+dependencies definition.
 
 First create the file `~/.config/nvim/lua/usr/mason-lspconfig.lua` and add the content:
-```
+```lua
 local M = {
   "williamboman/mason-lspconfig.nvim",
   dependencies = {
@@ -734,7 +733,7 @@ return o
 ```
 
 The init.lua
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -756,7 +755,7 @@ require("user.lazy")
 
 Now to config `lspconfig`, create the file `~/.config/nvim/lua/user/lspconfig.lua`
 with:
-```
+```lua
 local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -884,7 +883,7 @@ return M
 ```
 
 And from `init.lua`
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -900,8 +899,8 @@ spec("user.lspconfig")
 require("user.lazy")
 ```
 
-The defined icons for graphic info like warning, erros, etc, are in `~/.config/nvim/lua/user/icons.lua`  
-```
+The defined icons for graphic info like warning, errors, etc, are in `~/.config/nvim/lua/user/icons.lua`  
+```lua
 return {
   kind = {
     Array = " ",
@@ -1066,9 +1065,9 @@ As this file not execute any function, neither it has config or plugin
 associated to it, there is no need to load it from init.lua.
 
 
-### Text compleition
+### Text completion
 Add the following content to the `~/.config/nvim/lua/user/cmp.lua` file:  
-```
+```lua
 local M = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -1222,7 +1221,7 @@ return M
 ```
 
 And the definition from `init.lua`
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1249,7 +1248,7 @@ For the next code we assume that following is already installed through mason:
 `formatting: [prettier,black`, `linter: [flake8]`
 
 Create the file `~/.config/nvim/lua/user/none-ls.lua` with:  
-```
+```lua
 local M = {
   "nvimtools/none-ls.nvim",
   dependencies = {
@@ -1277,7 +1276,7 @@ return M
 ```
 
 And add the call from the init.lua file.
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1297,7 +1296,7 @@ require("user.lazy")
 
 ### Telescope
 Add the following to `~/.config/nvim/lua/user/telescope.lua`
-```
+```lua
 local M = {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -1452,7 +1451,7 @@ return M
 ```
 
 And add the call to Telescope from `init.lua`  
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1471,8 +1470,8 @@ spec("user.telescope")
 require("user.lazy")
 ```
 
-We install ripgrep for the text find option  
-```
+Install ripgrep for the text find option  
+```sh
 sudo apt install ripgrep
 ```
 
@@ -1481,7 +1480,7 @@ sudo apt install ripgrep
 This is a nice file explorer.
 
 Create a file `~/.config/nvim/lua/user/nvimtree.lua` and add this:  
-```
+```lua
 local M = {
   "nvim-tree/nvim-tree.lua",
 }
@@ -1580,7 +1579,7 @@ return M
 ```
 
 Add the call from init.lua.
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1601,7 +1600,7 @@ require("user.lazy")
 ```
 
 ### Comments
-```
+```lua
 local M = {
   "numToStr/Comment.nvim",
   lazy = false,
@@ -1635,7 +1634,7 @@ return M
 ```
 
 init.lua  
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1659,7 +1658,7 @@ require("user.lazy")
 ### Lualine
 A blazing fast and easy to configure Neovim statusline written in Lua.
 
-```
+```lua
 local M = {
   "nvim-lualine/lualine.nvim",
   -- dependencies = {
@@ -1690,7 +1689,7 @@ return M
 ```
 
 init.lua  
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1715,7 +1714,7 @@ require("user.lazy")
 ###  NAvic and breadcrumbs
 
 The `~/.config/nvim/lua/user/navic.lua` file
-```
+```lua
 local M = {
   "SmiteshP/nvim-navic",
 }
@@ -1739,7 +1738,7 @@ return M
 ```
 
 The `~/.config/nvim/lua/user/breadcrumbs.lua` file
-```
+```lua
 local M = {
   "LunarVim/breadcrumbs.nvim",
 }
@@ -1752,7 +1751,7 @@ return M
 ```
 
 and the `init./lua`
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -1781,7 +1780,7 @@ Mark files as buffer and alternate between the files you want
 
 Edit the file `~/.config/nvim/lua/user/harpoon.lua` with:  
 
-```
+```lua
 local M = {
   "ThePrimeagen/harpoon",
   event = "VeryLazy",
@@ -1807,7 +1806,7 @@ return M
 ```
 
 init.lua 
-```
+```lua
 ...
 
 spec("user.harpoon")
@@ -1815,9 +1814,9 @@ spec("user.harpoon")
 ```
 
 ### Oil 
-A vim-vinegar like file explorer that lets you edit your filesystem like a
+A vim-vinegar like file explorer that lets you edit your file system like a
 normal Neovim buffer.
-```
+```lua
 local M = {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -1836,7 +1835,7 @@ end
 return M
 ```
 init.lua 
-```
+```lua
 ...
 
 spec("user.oil")
@@ -1844,8 +1843,8 @@ spec("user.oil")
 ```
 
 ### Ufo folding
-for a comfortable folding
-```
+An easy folding tool
+```lua
 local M = {
   "kevinhwang91/nvim-ufo",
   dependencies = {
@@ -1959,7 +1958,7 @@ return M
 ```
 
 init.lua:  
-```
+```lua
 ...
 spec("user.ufo")
 ...
@@ -1969,7 +1968,7 @@ spec("user.ufo")
 This file add some functionalities that make the usage more fluid
 
 Edit the file `~/.config/nvim/lua/user/autocmds.lua` with:  
-```
+```lua
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd "set formatoptions-=cro"
@@ -2052,11 +2051,11 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 })
 ```
 
-and it must be required from init.lua but observe that this is not an table,
+And it must be required from init.lua but observe that this is not an table,
 this file is just a bunch of functions so in the top of the `init.lua` file add
 the `require("user.autocmds")` 
 
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
@@ -2073,7 +2072,7 @@ spec("user.devicons")
 ### Autopairs
 
 File `~/.config/nvim/lua/user/autopairs.lua`
-```
+```lua
 local M = {
   "windwp/nvim-autopairs",
 }
@@ -2089,7 +2088,7 @@ return M
 ```
 
 and the `init.lua`  
-```
+```lua
 ...
 spec("user.autopairs")
 ...
@@ -2098,7 +2097,7 @@ spec("user.autopairs")
 ### Toggleterm
 
 Edit the file `~/.config/nvim/lua/user/toggleterm.lua`:  
-```
+```lua
 local M = {
   "akinsho/toggleterm.nvim",
   event = "VeryLazy",
@@ -2223,8 +2222,8 @@ end
 return M
 ```
 
-and the `init.lua`
-```
+And the `init.lua`
+```lua
 ...
 spec("user.toggleterm")
 ```
@@ -2234,7 +2233,7 @@ spec("user.toggleterm")
 For notification an progress messages
 
 Edit de file `~/.config/nvim/lua/user/fidget.lua`
-```
+```lua
 local M = {
   "j-hui/fidget.nvim",
 }
@@ -2268,8 +2267,7 @@ return M
 ```
 
 And in the `init/lua`
-
-```
+```lua
 ...
 spec("user.fidget")
 ...
@@ -2278,7 +2276,7 @@ spec("user.fidget")
 ### Gitsign
 
 Edit the `~/.config/nvim/lua/user/gitsigns.lua` file
-```
+```lua
 local M = {
   "lewis6991/gitsigns.nvim",
   event = "BufEnter",
@@ -2396,14 +2394,14 @@ return M
 ```
 
 And add the call from  `init.lua`
-```
+```lua
 ...
 spec("user.gitsign")
 ```
 
 ### Markdown 
 I first installed yarn with the command `npm install -g yarn`, after this I create a file `~/.config/nvim/lua/user/markdown.lua` with this:  
-```
+```lua
 local M = {
   "iamcco/markdown-preview.nvim",
   build = "cd app && npm install",
@@ -2424,7 +2422,7 @@ return M
 ```
 
 And add the call from `init.lua`
-```
+```lua
 ...
 spec("user.markdown")
 ```
@@ -2893,7 +2891,7 @@ return M
 ```
 
 init.lua
-```
+```lua
 require("user.launch")
 require("user.options")
 require("user.keymaps")
