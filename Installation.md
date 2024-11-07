@@ -16,7 +16,7 @@ For a 13 inch laptop
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.1300
 ```
 
-# dark theme
+### Dark theme
 The next configurations can be done with the ubuntu GUI. But, I prefer do this from
 command line because is faster and less  time consuming on testing until arrive
 to the state desired.
@@ -28,13 +28,13 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Yaru-blue'
 ```
 
-### for small icon size
+### Small icon size
 ```
 gsettings set org.gnome.shell.extensions.ding icon-size 'small'
 ```
 
-### The pannel
-Attach the pannel at bottom with size of 40
+### The panel
+Attach the panel at bottom with size of 40
 ```
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 40
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
@@ -52,7 +52,7 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 38
 ```
 
 The commands used to change the values can be identified comparing the
-configuration original state with a modified state as shown bellow:
+configuration original state with a modified state as shown below:
 ```
 gsettings list-recursively > file1
 # do some change using the GUI
@@ -60,22 +60,22 @@ gsettings list-recursively > file2
 diff file1 file2
 ```
 
-### shortscuts
-I define my favorites shortscuts manually, for example:
-<alt>e for open firefox  
-<alt>w for minimize or hide window  
-<ctrl><alt>f for open the home folder  
+### Shortcuts
+I define my favorites shortcuts manually, for example:
+<alt>e -- for open firefox  
+<alt>w -- for minimize or hide window  
+<ctrl><alt>f -- for open the home folder  
 
-### install tree for visualize files
+### Install tree for visualize files
 ```
 sudo apt install tree
 ```
-### install fzf
+### Install fzf
 ```
 sudo apt install fzf
 ```
 
-and add the next command to `~/.bashrc`
+And then add the next command to `~/.bashrc`
 ```
 # for go to a directory
 alias asd='cd "$( find . -type d | fzf --height=60% --layout=reverse  --border --margin=1 --padding=1 )"'
@@ -83,10 +83,8 @@ alias asd='cd "$( find . -type d | fzf --height=60% --layout=reverse  --border -
 alias dsa='nvim "$( find . -type f | fzf --height=60% --layout=reverse  --border --margin=1 --padding=1 )"'
 ```
 
-
-### Files permissions
-Copy personal files, and give to them the right permissions for directories in
-work directory, be careful with the executables.
+### File and Directory permissions
+To restore the original permission on copied files or directories, be careful with the executables.
 ```
 find . -type d -exec chmod -fv 755 {} \;
 # for files in home directory
@@ -100,7 +98,7 @@ the same directory tree
 sudo apt install stow
 ```
 
-### Install the multimedia
+### Install multimedia
 ```
 sudo apt install ubuntu-restricted-extras
 sudo apt install mplayer 
@@ -109,7 +107,7 @@ sudo gdebi vdhcoapp-linux-x86_64.deb # for the video downloader helper plugin
 # Download the Video Downloader
 ```
 
-### Git and repo config
+### Git
 ```
 sudo apt install ssh
 sudo apt install git
@@ -118,30 +116,29 @@ git config --global user.email "somemail@gmail.com"
 ssh-keygen -t rsa -C "somemail@gmail.com"
 ```
 
-### Gdbi for .deb installations
+### Gdbi for .deb files installation
 ```
 sudo apt install gdebi
 # sudo gdebi expressvpn_3.76.0.4-1_amd64.deb #(optional)
 ```
 
-# Chrome
+### Chrome
 ```
 sudo gdebi google-chrome-stable_current_amd64.deb
 ```
 
-
-### instaling Curl
+### Installing Curl
 ```
 sudo apt install curl
 ```
 
-### the gnome-shell extension manager 
+### Gnome-shell extension manager 
 ```
 sudo apt install gnome-shell-extension-manager
 ```
 
 ### Mapping Keys
-Install keyd for keyboard extra sortcuts and personalization
+Install keyd for keyboard extra shortcuts and keys personalization
 ```
 git clone https://github.com/rvaiya/keyd
 cd keyd
@@ -150,7 +147,7 @@ sudo systemctl enable keyd && sudo systemctl start keyd
 sudo cp leyboard/keyd/default.conf /etc/keyd/
 ```
 
-# Install sublime text
+### Install sublime text
 ```
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
@@ -160,16 +157,16 @@ sudo apt-get install sublime-merge
 ```
 
 ### Image and 3d 
-Downloading the lastes inkscape release
+Downloading the last inkscape release
 ```
 sudo apt install inkscape
 ```
 
-### install blender
-### extract the folder blender-4.2.0-linux-x64 and copy in opt/blender
+### Install blender
+Extract the folder blender-4.2.0-linux-x64 and copy in opt/blender
 
 ### Neovim editor
-Downloading the lastes neovim release (neovim 0.10 at the current date 26/09/24)
+Downloading the last neovim release (neovim 0.10 at the current date 26/09/24)
 ```
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
@@ -193,6 +190,7 @@ install time-shift
 ```
 sudo apt install time-shift
 ```
+
 I use this settings:  
 Snapshot Type: RSYNC  
 Location tab: nvme0n1p4 (same as ubuntu)  
@@ -202,25 +200,14 @@ dasesu /home/dasesu: Include only hidden files
 root /root: Exclude all  
 
 ### Virtualization
-Install of virtualbox
+Install virtualbox
 ```
 sudo gdebi virtualbox-7.0_7.0.20-163906~Ubuntu~noble_amd64.deb
 # install virtualbox and the extension pack
 ```
 
 ### Install glow for a better markdown experience
-
 ```
 sudo snap install glow
-```
-
-### 
-
-```bash
-sudo apt install pkg-config \
-libglib2.0-dev \
-liblua5.4-dev \
-libwnck-3-dev \
-libgtk-4-dev
 ```
 
