@@ -13,7 +13,7 @@ sudo apt install gnome-tweaks
 ### Increase the text-scaling factor
 For a 13 inch laptop
 ```
-gsettings set org.gnome.desktop.interface text-scaling-factor 1.1300
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.1500
 ```
 
 ### Dark theme
@@ -211,3 +211,50 @@ sudo gdebi virtualbox-7.0_7.0.20-163906~Ubuntu~noble_amd64.deb
 sudo snap install glow
 ```
 
+### Sticky notes
+```
+# check this steps again
+sudo apt install flatpak
+sudo apt install gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.vixalien.sticky
+flatpak run com.vixalien.sticky
+```
+
+### Install octave
+```
+sudo add-apt-repository ppa:ubuntuhandbook1/octave
+sudo apt update
+sudo apt install octave
+```
+
+### Install gimp
+```
+sudo apt install gimp
+```
+
+
+### Install ratbagd
+```
+sudo apt install cmake libudev-dev libevdev-dev libsystemd-dev libglib2.0-dev libjson-glib-dev libunistring-dev check valgrind swig
+
+git clone https://github.com/libratbag/libratbag.git
+meson builddir --prefix=/usr/
+ninja -C builddir
+sudo ninja -C builddir install
+sudo ratbagd
+```
+
+### Install Piper
+```
+git clone https://github.com/libratbag/piper.git
+meson builddir --prefix=/usr/
+sudo apt install python3-lxml
+sudo apt install python3-cairo
+sudo apt install python3-gi
+sudo apt install python3-evdev
+meson builddir --prefix=/usr/
+ninja -C builddir
+sudo ninja -C builddir install
+piper
+```
