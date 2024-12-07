@@ -16,10 +16,9 @@ ratbagctl "$device" rate set 250 --nocommit
 ratbagctl "$device" button 0 action set button 1 --nocommit
 ratbagctl "$device" button 1 action set button 2 --nocommit
 ratbagctl "$device" button 2 action set button 3 --nocommit
-ratbagctl "$device" button 3 action set button 4 --nocommit # Backward
-ratbagctl "$device" button 4 action set button 5 --nocommit # Forward
-ratbagctl "$device" button 5 action set special 'profile-cycle-up'
+ratbagctl "$device" button 3 action set macro +KEY_LEFTCTRL KEY_X -KEY_LEFTCTRL --nocommit
+ratbagctl "$device" button 4 action set macro KEY_R --nocommit
+ratbagctl "$device" button 5 action set macro +KEY_LEFTCTRL KEY_V -KEY_LEFTCTRL
 
-
-echo "Profile set for $device"
+echo "Profile GIMP set for $device"
 
