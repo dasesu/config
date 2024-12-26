@@ -62,9 +62,9 @@ diff file1 file2
 
 ### Shortcuts
 I define my favorites shortcuts manually, for example:
-<alt>e -- for open firefox  
-<alt>w -- for minimize or hide window  
-<ctrl><alt>f -- for open the home folder  
+<alt>e -- open firefox  
+<alt>w -- minimize or hide window  
+<ctrl><alt>f -- open the home folder  
 
 ### Install tree for visualize files
 ```
@@ -79,6 +79,7 @@ And then add the next command to `~/.bashrc`
 ```
 # for go to a directory
 alias asd='cd "$( find . -type d | fzf --height=60% --layout=reverse  --border --margin=1 --padding=1 )"'
+
 # for open the file with nvim
 alias dsa='nvim "$( find . -type f | fzf --height=60% --layout=reverse  --border --margin=1 --padding=1 )"'
 ```
@@ -102,6 +103,7 @@ sudo apt install stow
 ```
 sudo apt install ubuntu-restricted-extras
 sudo apt install mplayer 
+
 # sudo snap install vlc #(optional)
 sudo gdebi vdhcoapp-linux-x86_64.deb # for the video downloader helper plugin
 # Download the Video Downloader
@@ -119,6 +121,10 @@ ssh-keygen -t rsa -C "somemail@gmail.com"
 ### Gdbi for .deb files installation
 ```
 sudo apt install gdebi
+```
+
+### Vpn
+```
 # sudo gdebi expressvpn_3.76.0.4-1_amd64.deb #(optional)
 ```
 
@@ -163,7 +169,7 @@ sudo apt install inkscape
 ```
 
 ### Install blender
-Extract the folder blender-4.2.0-linux-x64 and copy in opt/blender
+Extract the blender-4.2.0-linux-x64.zip and copy the content to opt/blender
 
 ### Neovim editor
 Downloading the last neovim release (neovim 0.10 at the current date 26/09/24)
@@ -190,7 +196,6 @@ install time-shift
 ```
 sudo apt install time-shift
 ```
-
 I use this settings:  
 Snapshot Type: RSYNC  
 Location tab: nvme0n1p4 (same as ubuntu)  
@@ -233,8 +238,7 @@ sudo apt install octave
 sudo apt install gimp
 ```
 
-
-### Install ratbagd
+### Install ratbagd for config logitech mouse
 ```
 sudo apt install cmake libudev-dev libevdev-dev libsystemd-dev libglib2.0-dev libjson-glib-dev libunistring-dev check valgrind swig
 
@@ -257,4 +261,29 @@ meson builddir --prefix=/usr/
 ninja -C builddir
 sudo ninja -C builddir install
 piper
+```
+
+### Install Docker using the apt repository
+```
+sudo apt-get remove docker docker-engine docker.io containerd runc
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+# Install the Docker packages.
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Verify that the installation is successful by running the hello-world image
+sudo docker run hello-world
 ```
