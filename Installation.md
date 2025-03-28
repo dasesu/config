@@ -287,3 +287,35 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 # Verify that the installation is successful by running the hello-world image
 sudo docker run hello-world
 ```
+
+### Install other versions of python
+Change the symlink link to /usr/bin/python3.10 for /usr/bin/python and set the
+group name to “python”. The group name must be same for all python versions.
+
+```
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
+```
+
+Repeat step 2 to add more Python version to group, which is already installed
+on your system.
+
+At this point, You have added two python binary versions to the group name
+“python”. Now, you can easily switch to any version with the following
+commands. Here “python” is the group name defined in the above commands.
+
+```
+sudo update-alternatives --config python 
+```
+
+That’s it. The current Python version is changed on your system. Just type the
+following command to view the correctly active Python version.
+
+```
+python -V 
+```
+
+
+### Install nmap and maybe other stuffs
+```
+sudo apt install nmap
+```
